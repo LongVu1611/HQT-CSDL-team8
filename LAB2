@@ -1,0 +1,9 @@
+------------------chu vi dien tich----------------------
+DECLARE @dientich Float,
+	@chuvi float,
+	@chieudai FLOAT=20,
+	@chieurong Float=15
+	set @dientich = @chieudai*@chieurong
+	set @chuvi= (@chieudai+@chieurong)*2
+	print @chuvi
+	print @dientich
