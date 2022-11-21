@@ -1,4 +1,4 @@
-----------------------BÀI 1---------------------------------------------------------------------------------------
+﻿----------------------BÀI 1---------------------------------------------------------------------------------------
 -----------------------Xuất định dạng “tổng số giờ làm việc” kiểu decimal với 2 số thập phân.-----------------
 SELECT TEN_CONG_VIEC AS 'TÊN CÔNG VIỆC' ,CAST (SUM(THOIGIAN) AS DECIMAL(5,2) ) AS'TỔNG SỐ GIỜ LÀM VIỆC'
 FROM PHANCONG,CONGVIEC
@@ -57,8 +57,23 @@ GO
 ----------------------------BÀI 3---------------------------------------------------
 ------------➢ Danh sách những nhân viên (HONV, TENLOT, TENNV, DCHI) có trên 2 thân nhân, thỏa các yêu cầu--------------------
 ----------------------Dữ liệu cột HONV được viết in hoa toàn bộ-----------------------
-SELECT UPPER(HONV+' '+TENLOT+' '+TENNV), LUONG FROM NHANVIEN
-WHERE LUONG >(SELECT ROUND(avg(LUONG), 2) FROM NHANVIEN WHERE PHG= (SELECT MAPHG FROM PHONGBAN WHERE TENPHG=N'Nghiên cứu'))
+GO
+	SELECT UPPER(HONV),TENLOT,TENNV,DCHI
+	FROM NHANVIEN,THANNHAN
+	WHERE MA_NVIEN=MANV
+	GROUP BY HONV,TENLOT,TENNV,DCHI
+	HAVING COUNT(THANNHAN.MA_NVIEN)>2
+GO
+	SELECT HONV,LOWER(TENLOT),TENNV,DCHI
+	FROM NHANVIEN,THANNHAN
+	WHERE MA_NVIEN=MANV
+	GROUP BY HONV,TENLOT,TENNV,DCHI
+	HAVING COUNT(THANNHAN.MA_NVIEN)>2
+GO
+	 SELECT DCHI FROM NHANVIEN
+  SELECT DCHI,CHARINDEX(' ',DCHI) FROM NHANVIEN
+  SELECT DCHI, LEFT(DCHI,CHARINDEX(' ',DCHI)) AS 'SỐ NHÀ'FROM NHANVIEN
+
 ----------BAI 4----------
 ------------Cho biết các nhân viên có năm sinh trong khoảng 1960 đến 1965-------------
 SELECT TENNV
@@ -66,3 +81,10 @@ FROM NHANVIEN
 WHERE YEAR(NGSINH) between 1960 and 1965
 -------Cho biết tuổi của các nhân viên tính đến thời điểm hiện tại.------
 SELECT YEAR(GETDATE())-YEAR(NGSINH) as 'Tuoi' FROM NHANVIEN
+----------Cho biết số lượng nhân viên, tên trưởng phòng, ngày nhận chức trưởng phòng và ngày
+nhận chức trưởng phòng hiển thi theo định dạng dd-mm-yy (ví dụ 25-04-2019)-------------
+ SELECT TENPHG, CONVERT(VARCHAR, NG_NHANCHUC,105) AS 'NGAY SINH',HONV,TENLOT,TENNV,COUNT(*) NHANVIEN
+  FROM PHONGBAN, NHANVIEN
+  WHERE   MANV=TRPHG and MAPHG=PHG
+  GROUP BY TENPHG,NG_NHANCHUC,HONV,TENLOT,TENNV
+ 
