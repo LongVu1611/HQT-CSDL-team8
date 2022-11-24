@@ -54,3 +54,40 @@ WHILE @D1 <(SELECT COUNT(MANV) FROM NHANVIEN )
 		SET @D1 = @D1 +2 ;
 	END
 GO
+-------Thực hiện chèn dữ liệu vào, nếu nhập được thì thông báo thành công,còn không thì ngược lại--------
+BEGIN TRY 
+INSERT PHONGBAN (TENPHG, MAPHG, TRPHG,NG_NHANCHUC)
+VALUES('SDD',5,'06','1989-10-12')
+PRINT'thêm dữ liệu thành công'
+END TRY
+BEGIN CATCH
+PRINT 'thêm dữ liệu thất bại' + CONVERT(VARCHAR, ERROR_NUMBER(),1)
++ ': ' + ERROR_MESSAGE()
+END CATCH
+
+-----Tính tổng các số từ 1 đến 10----------------
+DECLARE @tong int = 0,@c int,@g int = 1;
+SET @c = 10 
+WHILE (@g<=@c)
+BEGIN
+if (@g %2 =0)
+SET @tong = @tong + @g
+SET @g = @g + 1 
+END
+PRINT ('Ket qua la: ' )
+PRINT @tong
+
+
+-----Tính tổng các số từ 1 đến 10 trừ số 4----------------
+DECLARE @tong1 int = 0,@d INT = 10,@F INT
+SET @F = 1
+WHILE (@f<=@d)
+BEGIN
+if (@f %2 =0)
+SET @tong1 = @tong1 + @f
+SET @f = @f + 1 
+if(@f = 4)
+SET @tong1 = @tong1 - 4
+END
+PRINT ('Ket qua la: ' )
+PRINT @tong1
