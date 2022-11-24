@@ -1,27 +1,27 @@
 --------Viết chương trình xem xét tãng lươg cho nhân viên---------
-select iif(luong>=ltb,'Khong tang luong','tang luong')
-as thuong,tennv,luong,ltb
-from
-(select tennv,luong,ltb from NHANVIEN,
-(select phg,avg(luong) as 'ltb' from NHANVIEN group by phg) as temp
-where NHANVIEN.PHG=temp.PHG) as abc
-select * from NHANVIEN
-select phg,avg(luong) as 'ltb' from NHANVIEN group by phg
+SELECT IIF(LUONG>=LTB,'KHONGTANGLUONG','TANGLUONG')
+AS THUONG,TENNV,LUONG,LTB
+FROM
+(SELECT TENNV,LUONG,LTB FROM NHANVIEN,
+(SELECT PHG,AVG(LUONG) AS 'LTB' FROM NHANVIEN GROUP BY PHG) AS TEMP
+WHERE NHANVIEN.PHG=TEMP.PHG) AS ABC
+SELECT * FROM NHANVIEN
+SELECT PHG,AVG(LUONG) AS 'LTB' FROM NHANVIEN GROUP BY PHG
 
 
 -----------Viết chương trình phân loại nhân viên dựa vào mức lương----------------
-select iif(luong>=ltb,'truong phong','nhan vien')
-as chucvu,tennv,luong
-from
-(select tennv,luong,ltb from NHANVIEN,
-(select phg,avg(luong) as 'ltb' from NHANVIEN group by phg) as temp
-where NHANVIEN.PHG=temp.PHG) as abc
-select * from NHANVIEN
-select phg,avg(luong) as 'ltb' from NHANVIEN group by phg
---.Viết chương trình hiển thị TenNV như hình bên dưới, tùy vào cột phái của nhân viên
+SELECT IIF(LUONG>=LTB,'TRUONG PHONG','NHAN VIEN')
+AS CHUCVU,TENNV,LUONG
+FROM
+(SELECT TENNV,LUONG,LTB FROM NHANVIEN,
+(SELECT PHG,AVG(LUONG) AS 'LTB' FROM NHANVIEN GROUP BY PHG) AS TEMP
+WHERE NHANVIEN.PHG=TEMP.PHG) AS ABC
+SELECT * FROM NHANVIEN
+SELECT PHG,AVG(LUONG) AS 'LTB' FROM NHANVIEN GROUP BY PHG
+--.VIẾT CHƯƠNG TRÌNH HIỂN THỊ TENNV NHƯ HÌNH BÊN DƯỚI, TÙY VÀO CỘT PHÁI CỦA NHÂN VIÊN
 SELECT TENNV = CASE PHAI
-WHEN 'NAM' THEN 'Mr.' +[TENNV]
-ELSE 'Ms.'+[TENNV]
+WHEN 'NAM' THEN 'MR.' +[TENNV]
+ELSE 'MS.'+[TENNV]
 END
 FROM NHANVIEN
 
@@ -36,21 +36,21 @@ END
 FROM NHANVIEN
 
 -------------Cho biết thông tin nhân viên (HONV, TENLOT, TENNV) có MaNV là số chẵn.------------
-declare @d int = 2;
-while @d <(select count(manv) from NHANVIEN )
-	begin 
-		select * from NHANVIEN where cast (manv as int ) = @d
-		set @d = @d +2 ;
-		end
+DECLARE @D INT = 2;
+WHILE @D <(SELECT COUNT(MANV) FROM NHANVIEN )
+	BEGIN 
+		SELECT * FROM NHANVIEN WHERE CAST (MANV AS INT ) = @D
+		SET @D = @D +2 ;
+		END
 GO
 -------------Cho biết thông tin nhân viên (HONV, TENLOT, TENNV) có MaNV là số chẵn nhưng không tính nhân viên có MaNV là 4.------------
-declare @d1 int = 2 , @i int;
-while @d1 <(select count(manv) from NHANVIEN )
-	begin 
-	if (@d1 = 4 )
-		begin set @d1 = @d1 + 2
-			end
-		select * from NHANVIEN where cast (manv as int ) = @d1
-		set @d1 = @d1 +2 ;
-	end
+DECLARE @D1 INT = 2 , @I INT;
+WHILE @D1 <(SELECT COUNT(MANV) FROM NHANVIEN )
+	BEGIN 
+	IF (@D1 = 4 )
+		BEGIN SET @D1 = @D1 + 2
+			END
+		SELECT * FROM NHANVIEN WHERE CAST (MANV AS INT ) = @D1
+		SET @D1 = @D1 +2 ;
+	END
 GO
