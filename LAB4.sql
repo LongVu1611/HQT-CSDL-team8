@@ -1,4 +1,4 @@
---------Vi?t chýõng tr?nh xem xét tãng lýõng cho nhân viên---------
+--------Viáº¿t chÆ°Æ¡ng trÃ¬nh xem xÃ©t tÃ£ng lÆ°Æ¡g cho nhÃ¢n viÃªn---------
 select iif(luong>=ltb,'Khong tang luong','tang luong')
 as thuong,tennv,luong,ltb
 from
@@ -9,7 +9,7 @@ select * from NHANVIEN
 select phg,avg(luong) as 'ltb' from NHANVIEN group by phg
 
 
------------Vi?t chýõng tr?nh phân lo?i nhân viên d?a vào m?c lýõng----------------
+-----------Viáº¿t chÆ°Æ¡ng trÃ¬nh phÃ¢n loáº¡i nhÃ¢n viÃªn dá»±a vÃ o má»©c lÆ°Æ¡ng----------------
 select iif(luong>=ltb,'truong phong','nhan vien')
 as chucvu,tennv,luong
 from
