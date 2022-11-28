@@ -2,9 +2,9 @@ CREATE PROC XINCHAO
 @TEN NVARCHAR (20)
 AS
 BEGIN
-PRINT N'XIN CHÀO ' + @TEN;
+PRINT N'XIN CHÃ€O ' + @TEN;
 END
-EXEC XINCHAO N'NHÓM 8'
+EXEC XINCHAO N'NHÃ“M 8'
 GO
 
 CREATE PROC TONG
@@ -61,3 +61,12 @@ BEGIN
 	SELECT COUNT(MA_NVIEN) FROM PHANCONG
 	WHERE MADA = @MADA
 END
+
+-------------
+create proc lab5_c2a @MaNV varchar(20)
+as
+	begin
+		select * from NHANVIEN where MANV = @MaNV
+	end
+exec lab5_c2a '007'
+go
