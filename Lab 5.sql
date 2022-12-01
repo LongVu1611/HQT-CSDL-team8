@@ -62,11 +62,11 @@ BEGIN
 	WHERE MADA = @MADA
 END
 
--------------
-create proc lab5_c2a @MaNV varchar(20)
-as
-	begin
-		select * from NHANVIEN where MANV = @MaNV
-	end
-exec lab5_c2a '007'
+-------------câu 2d----------------------
+create proc cau2_d @Trphg nvarchar(10) as
+begin
+select  * from NHANVIEN inner join PHONGBAN ON NHANVIEN.PHG = PHONGBAN.MAPHG
+where TRPHG = @Trphg
+end
 go
+exec cau2_d '006'
