@@ -65,11 +65,13 @@ BEGIN
 	WHERE MADA = @MADA
 END
 
--------------
-create proc lab5_c2a @MaNV varchar(20)
-as
-	begin
-		select * from NHANVIEN where MANV = @MaNV
-	end
-exec lab5_c2a '007'
+-------------Câu 2e--------------
+create proc cau2_e @Manv nvarchar(10),@Mapb nvarchar(10) as
+begin
+if exists (select * from NHANVIEN where MANV = @Manv and PHG = @Mapb)
+	print' Có'
+else
+	print ' Không'
+end
 go
+exec cau2_e '002','4'
