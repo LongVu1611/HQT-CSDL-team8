@@ -119,6 +119,54 @@ EXEC CAU2E '002','4'
 GO
 
 ---------------------- Câu 3 -----------------------------
+
+
 -------------------Thêm phòng ban có tên CNTT vào csdl QLDA, các giá trị được thêm vào dưới dạng tham số đầu vào, kiếm tra nếu trùng Maphg thì thông báo thêm thất bại.------------------
+CREATE PROC CAU3A
+	@TENPHG NVARCHAR(15), @MAPHG INT, @TRPHG NVARCHAR(9), @NG_NHANCHUC DATE 
+AS 
+IF EXISTS (SELECT * FROM PHONGBAN WHERE MAPHG = @MAPHG) 
+UPDATE PHONGBAN SET TENPHG = @TENPHG, TRPHG = @TRPHG, NG_NHANCHUC = @NG_NHANCHUC 
+WHERE MAPHG = @MAPHG ELSE INSERT INTO PHONGBAN VALUES (@TENPHG, @MAPHG, @TRPHG, @NG_NHANCHUC) 
+--DROP PROC CAU3A
+GO 
+
+EXEC CAU3A 'CNTT', 6, '008', '1985-01-01'
+GO
 
 
+
+----------------Thêm một nhân viên vào bảng NhanVien, tất cả giá trị đều truyền dưới dạng tham số đầu vào với điều kiện:---------
+CREATE PROC CAU3C
+	@HONV NVARCHAR(15), @TENLOT NVARCHAR(15), @TENNV NVARCHAR(15), @MANV NVARCHAR(9), @NGSINH DATETIME, @DCHI NVARCHAR(30), @PHAI NVARCHAR(3), @LUONG FLOAT, @PHG INT 
+AS 
+BEGIN 
+	IF NOT EXISTS(SELECT * FROM PHONGBAN WHERE TENPHG = 'IT') 
+	BEGIN 
+		PRINT N'NHÂN VIÊN PHẢI TRỰC THUỘC PHÒNG IT'; 
+		RETURN; 
+	END; 
+	DECLARE @MA_NQL NVARCHAR(9); 
+	IF @LUONG > 25000 
+		SET @MA_NQL = '005'; 
+	ELSE 
+		SET @MA_NQL = '009'; 
+	DECLARE @AGE INT; 
+	SELECT @AGE = DATEDIFF(YEAR,@NGSINH,GETDATE()) + 1; 
+	IF @PHAI = 'NAM' AND (@AGE < 18 OR @AGE >60) 
+	BEGIN 
+		PRINT N'NAM PHẢI CÓ ĐỘ TUỔI TỪ 18-65'; 
+		RETURN; 
+	END; 
+	ELSE IF @PHAI = 'NỮ' AND (@AGE < 18 OR @AGE >60) 
+	BEGIN 
+		PRINT N'NỮ PHẢI CÓ ĐỘ TUỔI TỪ 18-60'; 
+		RETURN;
+	END; 
+	INSERT INTO NHANVIEN(HONV,TENLOT,TENNV,MANV,NGSINH,DCHI,PHAI,LUONG,MA_NQL,PHG) 
+		VALUES(@HONV,@TENLOT,@TENNV,@MANV,@NGSINH,@DCHI,@PHAI,@LUONG,@MA_NQL,@PHG) 
+END; 
+GO 
+
+EXEC CAU3C N'TRẦN',N'VĂN',N'AN','012','1995-04-10',N'ĐỒNG NAI','NAM',30000,6;
+GO
