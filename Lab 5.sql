@@ -64,6 +64,14 @@ BEGIN
 	SELECT COUNT(MA_NVIEN) FROM PHANCONG
 	WHERE MADA = @MADA
 END
+---------------------câu 2d----------------------
+create proc cau2_d @Trphg nvarchar(10) as
+begin
+select  * from NHANVIEN inner join PHONGBAN ON NHANVIEN.PHG = PHONGBAN.MAPHG
+where TRPHG = @Trphg
+end
+go
+exec cau2_d '006'
 
 -------------Câu 2e--------------
 create proc cau2_e @Manv nvarchar(10),@Mapb nvarchar(10) as
