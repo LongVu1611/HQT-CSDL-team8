@@ -1,0 +1,72 @@
+﻿[
+    {
+        "teacher_id": "T01",
+        "teacher_name": "Mr.Hải",
+        "dept_name": "Technology",
+        "salary": "7000",
+        "status_teacher": "N"
+    },
+    {
+        "teacher_id": "T02",
+        "teacher_name": "Mr.Trung ",
+        "dept_name": "Information Technology",
+        "salary": "7500",
+        "status_teacher": "A"
+    },
+    {
+        "teacher_id": "T03",
+        "teacher_name": "Mrs.Thư",
+        "dept_name": "Accounting",
+        "salary": "8700",
+        "status_teacher": "N"
+    },
+    {
+        "teacher_id": "T04",
+        "teacher_name": "Ms.Trang",
+        "dept_name": "Information Technology",
+        "salary": "8800",
+        "status_teacher": "A"
+    },
+    {
+        "teacher_id": "T05",
+        "teacher_name": "Ms.Vân",
+        "dept_name": "Technology",
+        "salary": "7700",
+        "status_teacher": "N"
+    },
+    {
+        "teacher_id": "T06",
+        "teacher_name": "Mrs.Lệ",
+        "dept_name": "Control Engineering and Automation",
+        "salary": "8000",
+        "status_teacher": "N"
+    },
+    {
+        "teacher_id": "T07",
+        "teacher_name": "Ms.Hòa",
+        "dept_name": "Business Administration",
+        "salary": "8000",
+        "status_teacher": "A"
+    },
+    {
+        "teacher_id": "T08",
+        "teacher_name": "Mr.Thành",
+        "dept_name": "Environment Engineering",
+        "salary": "8000",
+        "status_teacher": "A"
+    },
+    {
+        "teacher_id": "T09",
+        "teacher_name": "Mr.Tân",
+        "dept_name": "Environment Engineering",
+        "salary": "8100",
+        "status_teacher": "N"
+    },
+    {
+        "teacher_id": "T010",
+        "teacher_name": "Mr.Duy",
+        "dept_name": "Electrical Engineering",
+        "salary": "9000",
+        "status_teacher": "N"
+    }
+]

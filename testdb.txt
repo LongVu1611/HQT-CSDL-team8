@@ -1,0 +1,18 @@
+create table teacher(
+	teacher_id VARCHAR(10),
+	teacher_name VARCHAR(50),
+	dept_name VARCHAR(50),
+	salary VARCHAR(10),
+	status_teacher CHAR(1)
+	CONSTRAINT teacher_pk PRIMARY KEY (teacher_id)
+);
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T01', 'Mr.Anh', 'Technology', '7000', 'N');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T02', 'Mr.Trung ', 'Information Technology', '7500', 'A');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T03', 'Mrs.Thu', 'Accounting', '8700', 'N');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T04', 'Ms.Trang', 'Information Technology', '8800', 'A');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T05', 'Ms.Vy', 'Technology', '7700', 'N');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T06', 'Mrs.Ly', 'Control Engineering and Automation', '8000', 'N');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T07', 'Ms.Hoa', 'Business Administration', '8000', 'A');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T08', 'Mr.Thiên ', 'Environment Engineering', '8000', 'A');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T09', 'Mr.Anh ', 'Environment Engineering', '8100', 'N');
+insert into teacher(teacher_id, teacher_name, dept_name, salary, status_teacher) values ('T010', 'Mr.Duy', 'Electrical Engineering', '9000', 'N');
